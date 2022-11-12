@@ -6,8 +6,7 @@ import csv
 
 edgeDict = {}
 revEdgeDict = {}
-# edgeDict["1"]=5
-# print(edgeDict["1"])
+
 i = 0
 maxWeight = 0
 with open("soc-sign-bitcoinotc.csv", 'r') as data:
@@ -22,6 +21,16 @@ with open("soc-sign-bitcoinotc.csv", 'r') as data:
         else:  # if value not exist,create a new dic as value {node:{node:weight}}
             valueWightDic = {line[1]: int(line[2])}
             edgeDict[line[0]] = valueWightDic
+            if maxWeight < int(line[2]):
+                maxWeight = int(line[2])
+
+        if line[1] in revEdgeDict.keys():
+            revEdgeDict[line[1]][line[0]] = int(line[2])
+            if maxWeight < int(line[2]):
+                maxWeight = int(line[2])
+        else:  # if value not exist,create a new dic as value {node:{node:weight}}
+            valueWightDic = {line[0]: int(line[2])}
+            revEdgeDict[line[1]] = valueWightDic
             if maxWeight < int(line[2]):
                 maxWeight = int(line[2])
 
