@@ -1,5 +1,6 @@
 import csv
-#import pandas as pd
+
+# import pandas as pd
 
 # df = pd.read_csv('soc-sign-bitcoinotc.csv')
 # print(df.to_string())
@@ -9,16 +10,17 @@ revEdgeDict = {}
 nodeDict = {}
 maxWeight = 1
 
+
 def load_graph(path):
     i = 0
     maxWeight = 1
     with open(path, 'r') as data:
         for line in csv.reader(data):
-            nodeDict[line[0]] = 0  # init a set of all the nods
-            nodeDict[line[1]] = 0
             if i == 0:
                 i += 1
                 continue
+            nodeDict[line[0]] = 0  # init a set of all the nods
+            nodeDict[line[1]] = 0
             if line[0] in edgeDict.keys():
                 edgeDict[line[0]][line[1]] = int(line[2])
                 if maxWeight < int(line[2]):
@@ -43,6 +45,7 @@ def load_graph(path):
     print(len(edgeDict.keys()))
 
     return '1'
+
 
 def calculate_page_rank(beta=0.85, epcil=0.001, maxIterations=20):
     n = len(edgeDict.keys())
@@ -70,7 +73,7 @@ def calc_rank(node):
     return rank
 
 
-#calculate_page_rank()
+# calculate_page_rank()
 
 
 def get_PageRank(node_name):
@@ -83,7 +86,6 @@ def get_top_PageRank(n):
 
 def get_all_PageRank():
     return 1
-
 
 
 load_graph("test.csv")
