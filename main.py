@@ -1,5 +1,6 @@
 import csv
-#import pandas as pd
+
+# import pandas as pd
 
 # df = pd.read_csv('soc-sign-bitcoinotc.csv')
 # print(df.to_string())
@@ -9,7 +10,7 @@ revEdgeDict = {}
 
 i = 0
 maxWeight = 0
-with open("soc-sign-bitcoinotc.csv", 'r') as data:
+with open("test.csv", 'r') as data:
     for line in csv.reader(data):
         if i == 0:
             i += 1
@@ -36,41 +37,45 @@ with open("soc-sign-bitcoinotc.csv", 'r') as data:
 
 print(maxWeight)
 print(len(edgeDict.keys()))
+print(edgeDict)
+print(revEdgeDict)
 
 
 def load_graph(path):
     return '1'
 
-maxWight=10 #todo: delete afte merge
+
+maxWight = 10  # todo: delete afte merge
+
 
 def calculate_page_rank(beta=0.85, epcil=0.001, maxIterations=20):
     n = len(edgeDict.keys())
 
-    #first iteration - each node gets r=1/n
-    prevPRiter = {node:calc_W_Rank(k, 1/n) for k in edgeDict.keys()}
+    # first iteration - each node gets r=1/n
+    prevPRiter = {node: calc_W_Rank(k, 1 / n) for k in edgeDict.keys()}
     currPRiter = {}
 
     calc_rank("1")
-    delta = 1 #todo:update with function
+    delta = 1  # todo:update with function
 
     # while maxIterations > 0 and delta > epcil: #stop if delta is smaller than epcil or we reached maxIterations
     #     currPRiter =
 
-
     print(edgeDict)
+
 
 def calc_rank(node):
     rank = 0
     for nei in edgeDict[node]:
-        weight = revEdgeDict[node][nei]/maxWight
+        weight = revEdgeDict[node][nei] / maxWight
         num_of_neis = len(edgeDict[nei].keys)
         rank += weight * prevPRiter[nei] / num_of_neis
     print(rank)
     return rank
 
 
-
 calculate_page_rank()
+
 
 def get_PageRank(node_name):
     return '1'
