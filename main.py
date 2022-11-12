@@ -38,20 +38,28 @@ def calculate_page_rank(beta=0.85, epcil=0.001, maxIterations=20):
     n = len(edgeDict.keys())
 
     #first iteration - each node gets r=1/n
-    prevPRiter = {node:calc_W_Rank(node, 1/n) for k in edgeDict.keys()}
+    prevPRiter = {node:calc_W_Rank(k, 1/n) for k in edgeDict.keys()}
     currPRiter = {}
 
+    calc_rank("1")
     delta = 1 #todo:update with function
 
-    while maxIterations > 0 and delta > epcil: #stop if delta is smaller than epcil or we reached maxIterations
-        currPRiter =
+    # while maxIterations > 0 and delta > epcil: #stop if delta is smaller than epcil or we reached maxIterations
+    #     currPRiter =
 
 
-    print(currPRiter)
+    print(edgeDict)
 
-def calc_W_Rank(node, rank):
-    weight = #todo
-    return rank*weight/maxWight
+def calc_rank(node):
+    rank = 0
+    for nei in edgeDict[node]:
+        weight = revEdgeDict[node][nei]/maxWight
+        num_of_neis = len(edgeDict[nei].keys)
+        rank += weight * prevPRiter[nei] / num_of_neis
+    print(rank)
+    return rank
+
+
 
 calculate_page_rank()
 
