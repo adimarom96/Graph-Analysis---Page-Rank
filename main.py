@@ -9,9 +9,9 @@ revEdgeDict = {}
 nodeDict = {}
 maxWeight = 1
 
-
 def load_graph(path):
     i = 0
+    maxWeight = 1
     with open(path, 'r') as data:
         for line in csv.reader(data):
             nodeDict[line[0]] = 0  # init a set of all the nods
@@ -39,7 +39,9 @@ def load_graph(path):
                 if maxWeight < int(line[2]):
                     maxWeight = int(line[2])
 
-def load_graph(path):
+    print(maxWeight)
+    print(len(edgeDict.keys()))
+
     return '1'
 
 def calculate_page_rank(beta=0.85, epcil=0.001, maxIterations=20):
@@ -86,6 +88,7 @@ def get_all_PageRank():
 
 load_graph("test.csv")
 print(len(revEdgeDict.keys()))
+print(len(nodeDict))
 
 print(maxWeight)
 print(len(edgeDict.keys()))
