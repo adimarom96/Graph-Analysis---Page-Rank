@@ -14,12 +14,13 @@ with open("soc-sign-bitcoinotc.csv", 'r') as data:
         if i == 0:
             i += 1
             continue
-        if int(line[0]) in edgeDict.keys():
-            edgeDict[int(line[0])].append(line[1])
-        else:
-            edgeDict[int(line[0])] = [line[1]]
+        if line[0] in edgeDict.keys():
+            edgeDict[line[0]][line[1]] = line[2]
+        else:  # if value not exist,create a new dic as value {node:{node:weight}}
+            valueWightDic = {line[1]: line[2]}
+            edgeDict[line[0]] = valueWightDic
 
-print(edgeDict)
+print(edgeDict["6"])
 
 
 def load_graph(path):
