@@ -78,7 +78,8 @@ def calc_rank(node):
     if node in revEdgeDict.keys():
         for nei in revEdgeDict[node].keys():
             weight = revEdgeDict[node][nei]
-            weight = weight / maxWeight  # normlizing to get to sum of 1
+            nei_sum_weights = sum(w for w in edgeDict[nei].values())
+            weight = weight / nei_sum_weights
             rank += weight * prevPRiter[nei]
     return rank
 
@@ -112,7 +113,9 @@ def get_all_PageRank():
     return [tup for tup in currPRiter.items()]
 
 
-# load_graph("soc-sign-bitcoinotc.csv")
-load_graph("test.csv")
+load_graph("soc-sign-bitcoinotc.csv")
+# load_graph("test.csv")
 
-print(get_all_PageRank())
+print(get_top_PageRank(5))
+
+
